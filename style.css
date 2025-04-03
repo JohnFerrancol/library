@@ -13,6 +13,18 @@
   --book-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 }
 
+@media screen and (max-width: 2560px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  html {
+    font-size: 16px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -84,7 +96,8 @@ main .book {
   background-color: var(--book-background-color);
   box-shadow: var(--book-box-shadow);
   border-radius: 1em;
-
+  width: 20rem;
+  justify-self: center;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

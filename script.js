@@ -67,7 +67,6 @@ function addBookToLibrary() {
   const newBookPages = document.querySelector("#book-pages").value;
   const newBookHasRead = document.querySelector("#book-read").checked;
 
-  console.log(newBookHasRead);
   const newBook = new Book(
     randomId,
     newBookTitle,
@@ -121,6 +120,24 @@ function renderLibrary() {
     removeBookIcon.src = "assets/logos/delete.svg";
     removeBookIcon.alt = "Delete Book";
     removeBookIcon.classList.add("remove-book-icon");
+
+    // Add Event Listener to remove the book element from the container and the book object from sthe array
+    removeBookIcon.addEventListener("click", () => {
+      // Find the ancestor element with the class of book
+      const removeBookElement = removeBookIcon.closest(".book");
+
+      // Obtain the id of the book
+      const removeBookElementId = removeBookElement.dataset.id;
+
+      // Find the index of the book object in the myLibrary array to splice it
+      const removeBookObjectIndex = myLibrary.forEach(
+        (book) => book.id === removeBookElementId
+      );
+      myLibrary.splice(removeBookObjectIndex, 1);
+
+      // Remove the book from the DOM
+      removeBookElement.remove();
+    });
 
     bookButtonContainer.appendChild(haveReadButton);
     bookButtonContainer.appendChild(removeBookIcon);

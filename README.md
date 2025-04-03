@@ -23,5 +23,5 @@ This is a project from [The Odin Project](https://theodinproject.com): [Project:
 - [x] Adding functions define a Book object as well as adding a Book object to a predefined array
 - [x] Writing a function to display a Book objects array into a webpage
 - [x] Adding a form where the users can add new books into the Library
-- [ ] Creating buttons to change the book's reading status and removing the book from the library
+- [x] Creating buttons to change the book's reading status and removing the book from the library
 - [ ] Adding storage on page reloads

@@ -5,6 +5,8 @@
   --header-text-color: #382110;
   --main-text-color: #333333;
   --book-background-color: #ffffff;
+  --read-color: #9fff9c;
+  --not-read-color: #ff9c9c;
   --change-svg-color-brown: invert(15%) sepia(60%) saturate(250%);
   --change-svg-color-black: invert(20%) sepia(10%) saturate(500%);
   --header-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -72,7 +74,7 @@ main .library-title {
 
 main .books-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1rem;
   padding: 5rem 20rem;
 }
@@ -90,12 +92,27 @@ main .book {
 
 main .button-container {
   display: flex;
+  align-items: center;
   gap: 0.25rem;
   height: 3rem;
 }
 
+main .have-read-button {
+  padding: 1em 2em;
+  border: none;
+  font-weight: bold;
+}
+
+main .read {
+  background-color: var(--read-color);
+}
+
+main .not-read {
+  background-color: var(--not-read-color);
+}
+
 main .remove-book-icon {
-  height: 3rem;
+  height: 2.5rem;
   filter: var(--change-svg-color-black);
 }
 

@@ -16,22 +16,22 @@ const booksContainer = document.querySelector(".books-container");
 const addBookButton = document.querySelector(".add-book-button");
 const addBookDialog = document.querySelector(".add-book-dialog");
 const closeDialogIcon = document.querySelector(".close-dialog-icon");
-const submitDialogButton = document.querySelector(".submit-dialog-button");
 const addBookForm = document.querySelector("#add-book-form");
 
+// Displat the books when the page loads
 window.addEventListener("load", () => {
   renderLibrary();
 });
 
+// Add event listeners when the user wants to show or hide the dialog
 addBookButton.addEventListener("click", () => {
   addBookDialog.showModal();
 });
-
 closeDialogIcon.addEventListener("click", () => {
   addBookDialog.close();
 });
 
-submitDialogButton.addEventListener("click", (event) => {
+addBookForm.addEventListener("submit", (event) => {
   // Prevent page refresh and sending items to the server
   event.preventDefault();
 
@@ -55,6 +55,14 @@ function Book(id, title, author, pages, haveRead) {
   this.pages = pages;
   this.haveRead = haveRead;
 }
+
+// Method for the book to toggle the read status from the given read data
+Book.prototype.toggleReadStatus = function (readStatus) {
+  this.haveRead = readStatus ? false : true;
+
+  // Render the library to change the DOM
+  renderLibrary();
+};
 
 // Defining a function to add a book to the library from a new Book object
 function addBookToLibrary() {
@@ -112,10 +120,18 @@ function renderLibrary() {
     const bookButtonContainer = document.createElement("div");
     bookButtonContainer.classList.add("button-container");
 
+    // Creating the button to change the read status of the books
     const haveReadButton = document.createElement("button");
-    haveReadButton.textContent = "Read Book";
+    haveReadButton.textContent = book.haveRead ? "Read" : "Not Read";
+    haveReadButton.classList.toggle(book.haveRead ? "read" : "not-read");
     haveReadButton.classList.add("have-read-button");
 
+    // Add the event listener where it calls the read status prototype to toggle with the read status
+    haveReadButton.addEventListener("click", () => {
+      book.toggleReadStatus(book.haveRead);
+    });
+
+    // Creating the button to remove the book from the library
     const removeBookIcon = document.createElement("img");
     removeBookIcon.src = "assets/logos/delete.svg";
     removeBookIcon.alt = "Delete Book";

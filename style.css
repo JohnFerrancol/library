@@ -94,7 +94,7 @@ main .button-container {
   height: 3rem;
 }
 
-main .remove-book {
+main .remove-book-icon {
   height: 3rem;
   filter: var(--change-svg-color-black);
 }

@@ -24,12 +24,19 @@
           />
           <h1 class="website-logo-text">ReadingChallenge</h1>
         </div>
-        <button class="add-book-button">Add Book</button>
+        <div class="button-container">
+          <button class="add-book-button">Add Book</button>
+          <button class="change-goal-button">Change Goal</button>
+        </div>
       </nav>
     </header>
 
     <main class="library-container">
-      <h1 class="library-title">My Books</h1>
+      <h1 class="library-title">My Reading Goal</h1>
+      <div class="progress-bar">
+        <div class="bar-status"></div>
+      </div>
+      <p class="books-read">2/25 book(s) read</p>
       <section class="books-container"></section>
     </main>
 
@@ -39,6 +46,7 @@
           src="assets/logos/close.svg"
           alt="Close Dialog"
           class="close-dialog-icon"
+          id="close-add-book"
         />
       </div>
       <h3 class="dialog-title">Add New Book</h3>
@@ -81,7 +89,33 @@
         </div>
 
         <div class="button-container">
-          <button type="submit" class="submit-dialog-button">Submit</button>
+          <button type="submit" class="submit-button">Submit</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="change-goal-dialog">
+      <div class="close-dialog-container">
+        <img
+          src="assets/logos/close.svg"
+          alt="Close Dialog"
+          class="close-dialog-icon"
+          id="close-change-goal"
+        />
+      </div>
+      <h3 class="dialog-title">Change Goal</h3>
+      <form id="change-goal-form">
+        <input
+          class="dialog-inputs"
+          type="number"
+          id="change-goal"
+          name="change-goal"
+          placeholder="Change Goal"
+          required
+        />
+
+        <div class="button-container">
+          <button type="submit" class="submit-button">Submit</button>
         </div>
       </form>
     </dialog>

@@ -68,7 +68,13 @@ header .navigation-container {
   align-items: center;
 }
 
-header .add-book-button {
+header .button-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+header .add-book-button,
+.change-goal-button {
   background-color: inherit;
   color: inherit;
   font-size: 1.5rem;
@@ -76,9 +82,28 @@ header .add-book-button {
   border: none;
 }
 
-main .library-title {
+main .library-title,
+.books-read {
   text-align: center;
   padding-top: 1rem;
+}
+
+main .progress-bar {
+  margin-top: 1rem;
+  display: flex;
+  justify-self: center;
+  position: relative;
+  width: 50%;
+  height: 30px;
+  background-color: var(--white);
+  border-radius: 2rem;
+}
+
+main .bar-status {
+  position: absolute;
+  border-radius: 2rem;
+  height: 100%;
+  background-color: var(--brown);
 }
 
 main .books-container {
@@ -116,11 +141,11 @@ main .have-read-button {
 }
 
 main .read {
-  background-color: var(--red);
+  background-color: var(--green);
 }
 
 main .not-read {
-  background-color: var(--green);
+  background-color: var(--red);
 }
 
 main .remove-book-icon {
@@ -128,7 +153,8 @@ main .remove-book-icon {
   filter: var(--change-svg-color-black);
 }
 
-dialog.add-book-dialog {
+dialog.add-book-dialog,
+.change-goal-dialog {
   font-size: 1.5rem;
   font-family: inherit;
   background-color: inherit;
@@ -218,7 +244,7 @@ dialog .button-container {
   justify-content: center;
 }
 
-dialog .submit-dialog-button {
+dialog .submit-button {
   margin-top: 1.1rem;
   font-size: 1.2rem;
   font-family: inherit;

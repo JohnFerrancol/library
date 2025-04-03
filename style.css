@@ -1,16 +1,16 @@
 :root {
   font-family: "Poppins", sans-serif;
-  --header-background-color: #e9e5cd;
-  --main-background-color: #f4f1ea;
-  --header-text-color: #382110;
-  --main-text-color: #333333;
-  --book-background-color: #ffffff;
-  --read-color: #9fff9c;
-  --not-read-color: #ff9c9c;
+  --light-khaki: #e9e5cd;
+  --beige: #f4f1ea;
+  --brown: #382110;
+  --black: #333333;
+  --white: #ffffff;
+  --green: #9fff9c;
+  --red: #ff9c9c;
   --change-svg-color-brown: invert(15%) sepia(60%) saturate(250%);
   --change-svg-color-black: invert(20%) sepia(10%) saturate(500%);
   --header-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  --book-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+  --content-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 }
 
 @media screen and (max-width: 2560px) {
@@ -34,8 +34,8 @@
 body {
   font-family: var(--font-family);
   height: 100vh;
-  background-color: var(--main-background-color);
-  color: var(--main-text-color);
+  background-color: var(--beige);
+  color: var(--black);
 }
 
 img:hover,
@@ -45,8 +45,8 @@ input[type="checkbox"] {
 }
 
 header.navigation {
-  background-color: var(--header-background-color);
-  color: var(--header-text-color);
+  background-color: var(--light-khaki);
+  color: var(--brown);
 }
 
 header .website-logo-container {
@@ -72,11 +72,8 @@ header .add-book-button {
   background-color: inherit;
   color: inherit;
   font-size: 1.5rem;
+  font-weight: bold;
   border: none;
-}
-
-header .add-book-button:hover {
-  text-decoration: underline;
 }
 
 main .library-title {
@@ -93,8 +90,8 @@ main .books-container {
 
 main .book {
   padding: 1rem 1.2rem;
-  background-color: var(--book-background-color);
-  box-shadow: var(--book-box-shadow);
+  background-color: var(--white);
+  box-shadow: var(--content-box-shadow);
   border-radius: 1em;
   width: 20rem;
   justify-self: center;
@@ -111,6 +108,7 @@ main .button-container {
 }
 
 main .have-read-button {
+  font-size: 0.8rem;
   padding: 1em 2em;
   border: none;
   font-weight: bold;
@@ -118,11 +116,11 @@ main .have-read-button {
 }
 
 main .read {
-  background-color: var(--read-color);
+  background-color: var(--red);
 }
 
 main .not-read {
-  background-color: var(--not-read-color);
+  background-color: var(--green);
 }
 
 main .remove-book-icon {
@@ -170,7 +168,7 @@ dialog .dialog-inputs {
 
 dialog .dialog-inputs:focus {
   outline: none;
-  border: 2px solid var(--header-text-color);
+  border: 2px solid var(--brown);
 }
 
 dialog .checkbox-container {
@@ -178,6 +176,12 @@ dialog .checkbox-container {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+dialog .checkbox-container {
+  color: var(--brown);
+  font-weight: 600;
+  margin-top: 1rem;
 }
 
 dialog .book-read-checkbox {
@@ -188,7 +192,7 @@ dialog .book-read-checkbox {
   color: currentColor;
   width: 1.15em;
   height: 1.15em;
-  border: 0.15em solid var(--header-text-color);
+  border: 0.15em solid var(--brown);
   border-radius: 0.15em;
   transform: translateY(-0.075em);
   display: grid;
@@ -202,7 +206,7 @@ dialog input[type="checkbox"]::before {
   height: 0.6em;
   transform: scale(0);
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--header-text-color);
+  box-shadow: inset 1em 1em var(--brown);
 }
 
 dialog input[type="checkbox"]:checked::before {
@@ -218,8 +222,8 @@ dialog .submit-dialog-button {
   margin-top: 1.1rem;
   font-size: 1.2rem;
   font-family: inherit;
-  background-color: var(--header-text-color);
-  color: var(--header-background-color);
+  background-color: var(--brown);
+  color: var(--light-khaki);
   padding: 1rem 1.5rem;
   border-radius: 1rem;
   border: none;

@@ -9,8 +9,10 @@ This is a project from [The Odin Project](https://theodinproject.com): [Project:
 
 ## Learning Points
 
-- Understood how to format Javascrip code using objects and object constructors
+- Understood how to format Javascript code using objects and object constructors
 - Understood more Javascript object concepts (Prototypal inheritance)
+- Understood how to use HTML modals and dialogs and manipulate them with Javascript
+- Understood the event.preventDefault() method as well as the data-attribute to manipulate DOM elements
 
 ## Tech Stack
 

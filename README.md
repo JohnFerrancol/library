@@ -12,7 +12,8 @@ This is a project from [The Odin Project](https://theodinproject.com): [Project:
 - Understood how to format Javascript code using objects and object constructors
 - Understood more Javascript object concepts (Prototypal inheritance)
 - Understood how to use HTML modals and dialogs and manipulate them with Javascript
-- Understood the event.preventDefault() method as well as the data-attribute to manipulate DOM elements
+- Understood the event.preventDefault() method to prevent a form from refreshing when submitting the form
+- Understood the use of data.attribute in Javascript to manipulate DOM elements
 
 ## Tech Stack
 

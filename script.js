@@ -40,6 +40,11 @@ Book.prototype.toggleReadStatus = function () {
   renderLibrary();
 };
 
+// Display the books when the page loads
+window.addEventListener("load", () => {
+  renderLibrary();
+});
+
 // Defining a function that defines a ReadingProgress object
 function ReadingProgress(readingGoal) {
   // Throw error if constructors are not called with new
@@ -70,74 +75,49 @@ ReadingProgress.prototype.changeGoal = function (newGoal) {
   updateProgressBar(this.booksRead / this.readingGoal);
 };
 
-// Display the books when the page loads
-window.addEventListener("load", () => {
-  renderLibrary();
+// Add event listeners when the user wants to open a dialog
+const headerButtonContainer = document.querySelector(
+  "header .button-container"
+);
+headerButtonContainer.addEventListener("click", (event) => {
+  // Obtain the dialog class when the button is pressed in the header and show the dialog
+  let getDialogClass = event.target.dataset.dialog;
+  document.querySelector(`.${getDialogClass}`).showModal();
 });
 
-// Creating dictionaries of elements for when adding a book or change the goal as both have similar functionailities
-const dialogs = {
-  addBook: document.querySelector(".add-book-dialog"),
-  changeGoal: document.querySelector(".change-goal-dialog"),
-};
-
-const buttons = {
-  openAddBook: document.querySelector(".add-book-button"),
-  closeAddBook: document.querySelector("#close-add-book"),
-  openChangeGoal: document.querySelector(".change-goal-button"),
-  closeChangeGoal: document.querySelector("#close-change-goal"),
-};
-
-const forms = {
-  addBook: document.querySelector("#add-book-form"),
-  changeGoal: document.querySelector("#change-goal-form"),
-};
-
-// Selecting which dialog to open or close
-[
-  { button: buttons.openAddBook, dialog: dialogs.addBook, action: "showModal" },
-  { button: buttons.closeAddBook, dialog: dialogs.addBook, action: "close" },
-  {
-    button: buttons.openChangeGoal,
-    dialog: dialogs.changeGoal,
-    action: "showModal",
-  },
-  {
-    button: buttons.closeChangeGoal,
-    dialog: dialogs.changeGoal,
-    action: "close",
-  },
-].forEach(({ button, dialog, action }) => {
-  button.addEventListener("click", () => {
-    // Defining the action to be done
-    dialog[action]();
+// Add event listeners when the user wants to close a dialog
+const closeDialog = document.querySelectorAll(".close-dialog-icon");
+closeDialog.forEach((icon) => {
+  icon.addEventListener("click", (event) => {
+    // Obtain the dialog class when the icon is pressed in the header and close the dialog
+    let getDialogClass = event.target.dataset.dialog;
+    document.querySelector(`.${getDialogClass}`).close();
   });
 });
 
-forms.addBook.addEventListener("submit", (event) => {
-  // Prevent page refresh and sending items to the server
-  event.preventDefault();
+// Add event listeners when the user wants to submit a form
+const submitForms = document.querySelectorAll("form");
+submitForms.forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    // Prevent page refresh and sending items to the server
+    event.preventDefault();
 
-  // Add the book to the myLibrary array of Book objects
-  addBookToLibrary();
+    let targetId = event.target.id;
+    if (targetId === "add-book-form") {
+      // Add the new book to the library by running the function
+      addBookToLibrary();
+    } else if (targetId === "change-goal-form") {
+      // Change the new goal from the form submitted
+      const newGoal = document.querySelector("#change-goal").value;
+      readingProgress.changeGoal(newGoal);
+    }
 
-  // Clear the form and close the dialog
-  forms.addBook.reset();
-  dialogs.addBook.close();
-});
-
-forms.changeGoal.addEventListener("submit", (event) => {
-  // Prevent page refresh and sending items to the server
-  event.preventDefault();
-
-  const newGoal = document.querySelector("#change-goal").value;
-
-  // Update reading progress
-  readingProgress.changeGoal(newGoal);
-
-  // Clear the form and close the dialog
-  forms.changeGoal.reset();
-  dialogs.changeGoal.close();
+    // Reset the form and close the modal
+    form.reset();
+    let getDialogClass = event.target.dataset.dialog;
+    const dialogToClose = document.querySelector(`.${getDialogClass}`);
+    dialogToClose.close();
+  });
 });
 
 // Defining a function to add a book to the library from a new Book object

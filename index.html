@@ -25,8 +25,12 @@
           <h1 class="website-logo-text">ReadingChallenge</h1>
         </div>
         <div class="button-container">
-          <button class="add-book-button">Add Book</button>
-          <button class="change-goal-button">Change Goal</button>
+          <button class="add-book-button" data-dialog="add-book-dialog">
+            Add Book
+          </button>
+          <button class="change-goal-button" data-dialog="change-goal-dialog">
+            Change Goal
+          </button>
         </div>
       </nav>
     </header>
@@ -46,11 +50,11 @@
           src="assets/logos/close.svg"
           alt="Close Dialog"
           class="close-dialog-icon"
-          id="close-add-book"
+          data-dialog="add-book-dialog"
         />
       </div>
       <h3 class="dialog-title">Add New Book</h3>
-      <form id="add-book-form">
+      <form id="add-book-form" data-dialog="add-book-dialog">
         <input
           class="dialog-inputs"
           type="text"
@@ -100,11 +104,11 @@
           src="assets/logos/close.svg"
           alt="Close Dialog"
           class="close-dialog-icon"
-          id="close-change-goal"
+          data-dialog="change-goal-dialog"
         />
       </div>
       <h3 class="dialog-title">Change Goal</h3>
-      <form id="change-goal-form">
+      <form id="change-goal-form" data-dialog="change-goal-dialog">
         <input
           class="dialog-inputs"
           type="number"

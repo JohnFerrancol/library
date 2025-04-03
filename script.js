@@ -16,6 +16,7 @@ const addBookButton = document.querySelector(".add-book-button");
 const addBookDialog = document.querySelector(".add-book-dialog");
 const closeDialogIcon = document.querySelector(".close-dialog-icon");
 const submitDialogButton = document.querySelector(".submit-dialog-button");
+const addBookForm = document.querySelector("#add-book-form");
 
 addBookButton.addEventListener("click", () => {
   addBookDialog.showModal();
@@ -29,6 +30,7 @@ submitDialogButton.addEventListener("click", (event) => {
   // Prevent page refresh and sending items to the server
   event.preventDefault();
   addBookToLibrary();
+  addBookForm.reset();
   addBookDialog.close();
 });
 
@@ -60,6 +62,7 @@ function addBookToLibrary() {
   const newBookPages = document.querySelector("#book-pages").value;
   const newBookHasRead = document.querySelector("#book-read").checked;
 
+  console.log(newBookHasRead);
   const newBook = new Book(
     randomId,
     newBookTitle,

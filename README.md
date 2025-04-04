@@ -5,7 +5,7 @@
 
 ## Overview
 
-This is a project from [The Odin Project](https://theodinproject.com): [Project: Calculator](https://www.theodinproject.com/lessons/node-path-javascript-library). This project had us create a simple library books to add books to the webpage and adding a feature to track whether they have been read or not.
+This is a project from [The Odin Project](https://theodinproject.com): [Project: Library](https://www.theodinproject.com/lessons/node-path-javascript-library). This project had us create a simple library books to add books to the webpage and adding a feature to track whether they have been read or not.
 
 ## Learning Points
 

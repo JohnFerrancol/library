@@ -1,3 +1,61 @@
+const booksContainer = document.querySelector(".books-container");
+const readingGoal = document.querySelector(".books-read");
+
+class ReadingProgress {
+  // Define a private variable to keep track of the books read
+  #booksRead = 2;
+  constructor(readingGoal) {
+    this.readingGoal = readingGoal;
+  }
+
+  // Define the method used to increment or decrement the reading counter
+  updateProgress(addOrRemove) {
+    if (addOrRemove === "add") {
+      this.#booksRead++;
+    } else {
+      this.#booksRead--;
+    }
+    this.updateReadingProgressUI();
+  }
+
+  // Define the method to change the reading goal from the form
+  changeGoal(newGoal) {
+    // Change the Goal
+    this.readingGoal = newGoal;
+    this.updateReadingProgressUI();
+  }
+
+  // Define the method to update the UI when the reading progress changes
+  updateReadingProgressUI() {
+    readingGoal.textContent = `${this.#booksRead}/${
+      this.readingGoal
+    } book(s) read`;
+    updateProgressBar(this.#booksRead / this.readingGoal);
+  }
+}
+
+const readingProgress = new ReadingProgress(25);
+
+class Book {
+  constructor(id, title, author, pages, haveRead) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.haveRead = haveRead;
+  }
+
+  // Define a method to toggle the read status of the book
+  toggleReadStatus() {
+    // Toggle the read status and update the read progress
+    this.haveRead = !this.haveRead;
+    readingProgress.updateProgress(this.haveRead ? "add" : "remove");
+
+    // Render the library to change the DOM
+    renderLibrary();
+  }
+}
+
 // Defining a myLibrary array which contains the library objects
 // Preload 4 Book objects to alloww users to see the layout and the reading progress
 const myLibrary = [
@@ -12,68 +70,12 @@ const myLibrary = [
   new Book(crypto.randomUUID(), "Gone Girl", "Gilian Flynn", 480, true),
   new Book(crypto.randomUUID(), "Misery", "Stephen King", 300, false),
 ];
-const readingProgress = new ReadingProgress(25);
-updateProgressBar(2 / 25);
 
-const booksContainer = document.querySelector(".books-container");
-const readingGoal = document.querySelector(".books-read");
-
-// Defining a function which defines the Book object
-function Book(id, title, author, pages, haveRead) {
-  // Throw error if constructors are not called with new
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
-  }
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.haveRead = haveRead;
-}
-
-// Method for the book to toggle the read status from the given read data
-Book.prototype.toggleReadStatus = function () {
-  this.haveRead = !this.haveRead;
-  readingProgress.updateProgress(this.haveRead ? "add" : "remove");
-
-  // Render the library to change the DOM
-  renderLibrary();
-};
-
-// Display the books when the page loads
+// Display the books and change the progress bar when the page loads
 window.addEventListener("load", () => {
+  updateProgressBar(2 / 25);
   renderLibrary();
 });
-
-// Defining a function that defines a ReadingProgress object
-function ReadingProgress(readingGoal) {
-  // Throw error if constructors are not called with new
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor");
-  }
-  this.booksRead = 2;
-  this.readingGoal = readingGoal;
-}
-
-ReadingProgress.prototype.updateProgress = function (addOrRemove) {
-  // Add or remove the books from the progress accordingly
-  if (addOrRemove === "add") {
-    this.booksRead++;
-  } else {
-    this.booksRead--;
-  }
-
-  readingGoal.textContent = `${this.booksRead}/${this.readingGoal} book(s) read`;
-  updateProgressBar(this.booksRead / this.readingGoal);
-};
-
-ReadingProgress.prototype.changeGoal = function (newGoal) {
-  // Change the Goal
-  this.readingGoal = newGoal;
-
-  readingGoal.textContent = `${this.booksRead}/${this.readingGoal} book(s) read`;
-  updateProgressBar(this.booksRead / this.readingGoal);
-};
 
 // Add event listeners when the user wants to open a dialog
 const headerButtonContainer = document.querySelector(

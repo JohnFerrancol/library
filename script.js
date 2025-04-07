@@ -30,7 +30,11 @@ class ReadingProgress {
     readingGoal.textContent = `${this.#booksRead}/${
       this.readingGoal
     } book(s) read`;
-    updateProgressBar(this.#booksRead / this.readingGoal);
+
+    // Handle errors to avoid overflowing the progress bar by only updating the progress bar when it is not full
+    if (this.#booksRead <= this.readingGoal) {
+      updateProgressBar(this.#booksRead / this.readingGoal);
+    }
   }
 }
 
